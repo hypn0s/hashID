@@ -91,7 +91,7 @@ prototypes = [
     Prototype(
         regex=re.compile(r'(.+:)?_[a-z0-9\/.]{19}$', re.IGNORECASE),
         modes=[
-            HashInfo(name='BSDi Crypt', hashcat=None, john='bsdicrypt', extended=False, salted=True]),
+            HashInfo(name='BSDi Crypt', hashcat=None, john='bsdicrypt', extended=False, salted=True)]),
     Prototype(
         regex=re.compile(r'(.+:)?[a-f0-9]{24}$', re.IGNORECASE),
         modes=[
