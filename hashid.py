@@ -31,136 +31,136 @@ __license__ = "License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licens
 __banner__  = "hashID v{0} by {1} ({2})".format(__version__, __author__, __github__)
 
 Prototype = namedtuple('Prototype', ['regex', 'modes'])
-HashInfo = namedtuple('HashInfo', ['name', 'hashcat', 'john', 'extended'])
+HashInfo = namedtuple('HashInfo', ['name', 'hashcat', 'john', 'extended', 'salted'])
 
 prototypes = [
     Prototype(
         regex=re.compile(r'(.+:)?[a-f0-9]{4}$', re.IGNORECASE),
         modes=[
-            HashInfo(name='CRC-16', hashcat=None, john=None, extended=False),
-            HashInfo(name='CRC-16-CCITT', hashcat=None, john=None, extended=False),
-            HashInfo(name='FCS-16', hashcat=None, john=None, extended=False)]),
+            HashInfo(name='CRC-16', hashcat=None, john=None, extended=False, salted=False),
+            HashInfo(name='CRC-16-CCITT', hashcat=None, john=None, extended=False, salted=False),
+            HashInfo(name='FCS-16', hashcat=None, john=None, extended=False, salted=False)]),
     Prototype(
         regex=re.compile(r'(.+:)?[a-f0-9]{8}$', re.IGNORECASE),
         modes=[
-            HashInfo(name='Adler-32', hashcat=None, john=None, extended=False),
-            HashInfo(name='CRC-32B', hashcat=None, john=None, extended=False),
-            HashInfo(name='FCS-32', hashcat=None, john=None, extended=False),
-            HashInfo(name='GHash-32-3', hashcat=None, john=None, extended=False),
-            HashInfo(name='GHash-32-5', hashcat=None, john=None, extended=False),
-            HashInfo(name='FNV-132', hashcat=None, john=None, extended=False),
-            HashInfo(name='Fletcher-32', hashcat=None, john=None, extended=False),
-            HashInfo(name='Joaat', hashcat=None, john=None, extended=False),
-            HashInfo(name='ELF-32', hashcat=None, john=None, extended=False),
-            HashInfo(name='XOR-32', hashcat=None, john=None, extended=False)]),
+            HashInfo(name='Adler-32', hashcat=None, john=None, extended=False, salted=False),
+            HashInfo(name='CRC-32B', hashcat=None, john=None, extended=False, salted=False),
+            HashInfo(name='FCS-32', hashcat=None, john=None, extended=False, salted=False),
+            HashInfo(name='GHash-32-3', hashcat=None, john=None, extended=False, salted=False),
+            HashInfo(name='GHash-32-5', hashcat=None, john=None, extended=False, salted=False),
+            HashInfo(name='FNV-132', hashcat=None, john=None, extended=False, salted=False),
+            HashInfo(name='Fletcher-32', hashcat=None, john=None, extended=False, salted=False),
+            HashInfo(name='Joaat', hashcat=None, john=None, extended=False, salted=False),
+            HashInfo(name='ELF-32', hashcat=None, john=None, extended=False, salted=False),
+            HashInfo(name='XOR-32', hashcat=None, john=None, extended=False, salted=False)]),
     Prototype(
         regex=re.compile(r'(.+:)?[a-f0-9]{6}$', re.IGNORECASE),
         modes=[
-            HashInfo(name='CRC-24', hashcat=None, john=None, extended=False)]),
+            HashInfo(name='CRC-24', hashcat=None, john=None, extended=False, salted=False)]),
     Prototype(
         regex=re.compile(r'(.+:)?(\$crc32\$[a-f0-9]{8}.)?[a-f0-9]{8}$', re.IGNORECASE),
         modes=[
-            HashInfo(name='CRC-32', hashcat=None, john='crc32', extended=False)]),
+            HashInfo(name='CRC-32', hashcat=None, john='crc32', extended=False, salted=False)]),
     Prototype(
         regex=re.compile(r'(.+:)?\+[a-z0-9\/.]{12}$', re.IGNORECASE),
         modes=[
-            HashInfo(name='Eggdrop IRC Bot', hashcat=None, john='bfegg', extended=False)]),
+            HashInfo(name='Eggdrop IRC Bot', hashcat=None, john='bfegg', extended=False, salted=False)]),
     Prototype(
         regex=re.compile(r'(.+:)?[a-z0-9\/.]{13}$', re.IGNORECASE),
         modes=[
-            HashInfo(name='DES(Unix)', hashcat=1500, john='descrypt', extended=False),
-            HashInfo(name='Traditional DES', hashcat=1500, john='descrypt', extended=False),
-            HashInfo(name='DEScrypt', hashcat=1500, john='descrypt', extended=False)]),
+            HashInfo(name='DES(Unix)', hashcat=1500, john='descrypt', extended=False, salted=True),
+            HashInfo(name='Traditional DES', hashcat=1500, john='descrypt', extended=False, salted=True),
+            HashInfo(name='DEScrypt', hashcat=1500, john='descrypt', extended=False, salted=True)]),
     Prototype(
         regex=re.compile(r'(.+:)?[a-f0-9]{16}$', re.IGNORECASE),
         modes=[
-            HashInfo(name='MySQL323', hashcat=200, john='mysql', extended=False),
-            HashInfo(name='DES(Oracle)', hashcat=3100, john=None, extended=False),
-            HashInfo(name='Half MD5', hashcat=5100, john=None, extended=False),
-            HashInfo(name='Oracle 7-10g', hashcat=3100, john=None, extended=False),
-            HashInfo(name='FNV-164', hashcat=None, john=None, extended=False),
-            HashInfo(name='CRC-64', hashcat=None, john=None, extended=False)]),
+            HashInfo(name='MySQL323', hashcat=200, john='mysql', extended=False, salted=False),
+            HashInfo(name='DES(Oracle)', hashcat=3100, john=None, extended=False, salted=True),
+            HashInfo(name='Half MD5', hashcat=5100, john=None, extended=False, salted=False),
+            HashInfo(name='Oracle 7-10g', hashcat=3100, john=None, extended=False, salted=True),
+            HashInfo(name='FNV-164', hashcat=None, john=None, extended=False, salted=False),
+            HashInfo(name='CRC-64', hashcat=None, john=None, extended=False, salted=False)]),
     Prototype(
         regex=re.compile(r'(.+:)?[a-z0-9\/.]{16}$', re.IGNORECASE),
         modes=[
-            HashInfo(name='Cisco-PIX(MD5)', hashcat=2400, john='pix-md5', extended=False)]),
+            HashInfo(name='Cisco-PIX(MD5)', hashcat=2400, john='pix-md5', extended=False, salted=False)]),
     Prototype(
         regex=re.compile(r'(.+:)?\([a-z0-9\/+]{20}\)$', re.IGNORECASE),
         modes=[
-            HashInfo(name='Lotus Notes/Domino 6', hashcat=8700, john='dominosec', extended=False)]),
+            HashInfo(name='Lotus Notes/Domino 6', hashcat=8700, john='dominosec', extended=False, salted=False)]),
     Prototype(
         regex=re.compile(r'(.+:)?_[a-z0-9\/.]{19}$', re.IGNORECASE),
         modes=[
-            HashInfo(name='BSDi Crypt', hashcat=None, john='bsdicrypt', extended=False)]),
+            HashInfo(name='BSDi Crypt', hashcat=None, john='bsdicrypt', extended=False, salted=True]),
     Prototype(
         regex=re.compile(r'(.+:)?[a-f0-9]{24}$', re.IGNORECASE),
         modes=[
-            HashInfo(name='CRC-96(ZIP)', hashcat=None, john=None, extended=False)]),
+            HashInfo(name='CRC-96(ZIP)', hashcat=None, john=None, extended=False, salted=False)]),
     Prototype(
         regex=re.compile(r'(.+:)?[a-z0-9\/.]{24}$', re.IGNORECASE),
         modes=[
-            HashInfo(name='Crypt16', hashcat=None, john=None, extended=False)]),
+            HashInfo(name='Crypt16', hashcat=None, john=None, extended=False, salted=False)]),
     Prototype(
         regex=re.compile(r'(.+:)?(\$md2\$)?[a-f0-9]{32}$', re.IGNORECASE),
         modes=[
-            HashInfo(name='MD2', hashcat=None, john='md2', extended=False)]),
+            HashInfo(name='MD2', hashcat=None, john='md2', extended=False, salted=False)]),
     Prototype(
         	regex=re.compile(r'(.+:)?[a-f0-9]{32}$', re.IGNORECASE),
         modes=[
-            HashInfo(name='MD5', hashcat=0, john='raw-md5', extended=False),
-            HashInfo(name='MD4', hashcat=900, john='raw-md4', extended=False),
-            HashInfo(name='Double MD5', hashcat=2600, john=None, extended=False),
-            HashInfo(name='LM', hashcat=3000, john='lm', extended=False),
-            HashInfo(name='RIPEMD-128', hashcat=None, john='ripemd-128', extended=False),
-            HashInfo(name='Haval-128', hashcat=None, john='haval-128-4', extended=False),
-            HashInfo(name='Tiger-128', hashcat=None, john=None, extended=False),
-            HashInfo(name='Skein-256(128)', hashcat=None, john=None, extended=False),
-            HashInfo(name='Skein-512(128)', hashcat=None, john=None, extended=False),
-            HashInfo(name='Lotus Notes/Domino 5', hashcat=8600, john='lotus5', extended=False),
-            HashInfo(name='Skype', hashcat=23, john=None, extended=False),
-            HashInfo(name='ZipMonster', hashcat=None, john=None, extended=True),
-            HashInfo(name='PrestaShop', hashcat=11000, john=None, extended=True),
-            HashInfo(name='md5(md5(md5($pass)))', hashcat=3500, john=None, extended=True),
-            HashInfo(name='md5(strtoupper(md5($pass)))', hashcat=4300, john=None, extended=True)]),
+            HashInfo(name='MD5', hashcat=0, john='raw-md5', extended=False, salted=False),
+            HashInfo(name='MD4', hashcat=900, john='raw-md4', extended=False, salted=False),
+            HashInfo(name='Double MD5', hashcat=2600, john='dynamic_2', extended=False, salted=False),
+            HashInfo(name='LM', hashcat=3000, john='lm', extended=False, salted=False),
+            HashInfo(name='RIPEMD-128', hashcat=None, john='ripemd-128', extended=False, salted=False),
+            HashInfo(name='Haval-128', hashcat=None, john='haval-128-4', extended=False, salted=False),
+            HashInfo(name='Tiger-128', hashcat=None, john=None, extended=False, salted=False),
+            HashInfo(name='Skein-256(128)', hashcat=None, john=None, extended=False, salted=False),
+            HashInfo(name='Skein-512(128)', hashcat=None, john=None, extended=False, salted=False),
+            HashInfo(name='Lotus Notes/Domino 5', hashcat=8600, john='lotus5', extended=False, salted=False),
+            HashInfo(name='Skype', hashcat=23, john=None, extended=False, salted=False),
+            HashInfo(name='ZipMonster', hashcat=None, john=None, extended=True, salted=False),
+            HashInfo(name='PrestaShop', hashcat=11000, john=None, extended=True, salted=False),
+            HashInfo(name='md5(md5(md5($pass)))', hashcat=3500, john=None, extended=True, salted=False),
+            HashInfo(name='md5(strtoupper(md5($pass)))', hashcat=4300, john=None, extended=True, salted=False)]),
     Prototype(
         	regex=re.compile(r':?[a-f0-9]{32}:.+$', re.IGNORECASE),
         modes=[
-            HashInfo(name='md5(sha1($pass))', hashcat=4400, john=None, extended=True),
-            HashInfo(name='md5($pass.$salt)', hashcat=10, john=None, extended=True),
-            HashInfo(name='md5($salt.$pass)', hashcat=20, john=None, extended=True),
-            HashInfo(name='md5(unicode($pass).$salt)', hashcat=30, john=None, extended=True),
-            HashInfo(name='md5($salt.unicode($pass))', hashcat=40, john=None, extended=True),
-            HashInfo(name='HMAC-MD5 (key = $pass)', hashcat=50, john='hmac-md5', extended=True),
-            HashInfo(name='HMAC-MD5 (key = $salt)', hashcat=60, john='hmac-md5', extended=True),
-            HashInfo(name='md5(md5($salt).$pass)', hashcat=3610, john=None, extended=True),
-            HashInfo(name='md5($salt.md5($pass))', hashcat=3710, john=None, extended=True),
-            HashInfo(name='md5($pass.md5($salt))', hashcat=3720, john=None, extended=True),
-            HashInfo(name='md5($salt.$pass.$salt)', hashcat=3810, john=None, extended=True),
-            HashInfo(name='md5(md5($pass).md5($salt))', hashcat=3910, john=None, extended=True),
-            HashInfo(name='md5($salt.md5($salt.$pass))', hashcat=4010, john=None, extended=True),
-            HashInfo(name='md5($salt.md5($pass.$salt))', hashcat=4110, john=None, extended=True),
-            HashInfo(name='md5($username.0.$pass)', hashcat=4210, john=None, extended=True)]),
+            HashInfo(name='md5(sha1($pass))', hashcat=4400, john=None, extended=True, salted=True),
+            HashInfo(name='md5($pass.$salt)', hashcat=10, john='dynamic_1', extended=True, salted=True),
+            HashInfo(name='md5($salt.$pass)', hashcat=20, john='dynamic_4', extended=True, salted=True),
+            HashInfo(name='md5(unicode($pass).$salt)', hashcat=30, john=None, extended=True, salted=True),
+            HashInfo(name='md5($salt.unicode($pass))', hashcat=40, john=None, extended=True, salted=True),
+            HashInfo(name='HMAC-MD5 (key = $pass)', hashcat=50, john='hmac-md5', extended=True, salted=True),
+            HashInfo(name='HMAC-MD5 (key = $salt)', hashcat=60, john='hmac-md5', extended=True, salted=True),
+            HashInfo(name='md5(md5($salt).$pass)', hashcat=3610, john=None, extended=True, salted=True),
+            HashInfo(name='md5($salt.md5($pass))', hashcat=3710, john=None, extended=True, salted=True),
+            HashInfo(name='md5($pass.md5($salt))', hashcat=3720, john=None, extended=True, salted=True),
+            HashInfo(name='md5($salt.$pass.$salt)', hashcat=3810, john=None, extended=True, salted=True),
+            HashInfo(name='md5(md5($pass).md5($salt))', hashcat=3910, john=None, extended=True, salted=True),
+            HashInfo(name='md5($salt.md5($salt.$pass))', hashcat=4010, john=None, extended=True, salted=True),
+            HashInfo(name='md5($salt.md5($pass.$salt))', hashcat=4110, john=None, extended=True, salted=True),
+            HashInfo(name='md5($username.0.$pass)', hashcat=4210, john=None, extended=True, salted=True)]),
     Prototype(
         regex=re.compile(r'(.+:)?(\$snefru\$)?[a-f0-9]{32}$', re.IGNORECASE),
         modes=[
-            HashInfo(name='Snefru-128', hashcat=None, john='snefru-128', extended=False)]),
+            HashInfo(name='Snefru-128', hashcat=None, john='snefru-128', extended=False, salted=False)]),
     Prototype(
         regex=re.compile(r'(.+:)?(\$NT\$)?[a-f0-9]{32}$', re.IGNORECASE),
         modes=[
-            HashInfo(name='NTLM', hashcat=1000, john='nt', extended=False)]),
+            HashInfo(name='NTLM', hashcat=1000, john='nt', extended=False, salted=False)]),
     Prototype(
         regex=re.compile(r'(.+:)?([^\\\/:*?"<>|]{1,20}:)?[a-f0-9]{32}(:[^\\\/:*?"<>|]{1,20})?$', re.IGNORECASE),
         modes=[
-            HashInfo(name='Domain Cached Credentials', hashcat=1100, john='mscach', extended=False)]),
+            HashInfo(name='Domain Cached Credentials', hashcat=1100, john='mscach', extended=False, salted=True)]),
     Prototype(
         regex=re.compile(r'(.+:)?([^\\\/:*?"<>|]{1,20}:)?(\$DCC2\$10240#[^\\\/:*?"<>|]{1,20}#)?[a-f0-9]{32}$', re.IGNORECASE),
         modes=[
-            HashInfo(name='Domain Cached Credentials 2', hashcat=2100, john='mscach2', extended=False)]),
+            HashInfo(name='Domain Cached Credentials 2', hashcat=2100, john='mscach2', extended=False, salted=True)]),
     Prototype(
         regex=re.compile(r'(.+:)?{SHA}[a-z0-9\/+]{27}=$', re.IGNORECASE),
         modes=[
-            HashInfo(name='SHA-1(Base64)', hashcat=101, john='nsldap', extended=False),
-            HashInfo(name='Netscape LDAP SHA', hashcat=101, john='nsldap', extended=False)]),
+            HashInfo(name='SHA-1(Base64)', hashcat=101, john='raw-sha', extended=False, salted=False),
+            HashInfo(name='Netscape LDAP SHA', hashcat=101, john='raw-sha1', extended=False, salted=False)]),
     Prototype(
         regex=re.compile(r'(.+:)?\$1\$[a-z0-9\/.]{0,8}\$[a-z0-9\/.]{22}(:.*)?$', re.IGNORECASE),
         modes=[
@@ -218,7 +218,7 @@ prototypes = [
         regex=re.compile(r'(.+:)?[a-f0-9]{40}(:.+)?$', re.IGNORECASE),
         modes=[
             HashInfo(name='SHA-1', hashcat=100, john='raw-sha1', extended=False),
-            HashInfo(name='Double SHA-1', hashcat=4500, john=None, extended=False),
+            HashInfo(name='Double SHA-1', hashcat=4500, john=1026, extended=False),
             HashInfo(name='RIPEMD-160', hashcat=6000, john='ripemd-160', extended=False),
             HashInfo(name='Haval-160', hashcat=None, john=None, extended=False),
             HashInfo(name='Tiger-160', hashcat=None, john=None, extended=False),
@@ -229,8 +229,8 @@ prototypes = [
             HashInfo(name='MangosWeb Enhanced CMS', hashcat=None, john=None, extended=True),
             HashInfo(name='sha1(sha1(sha1($pass)))', hashcat=4600, john=None, extended=True),
             HashInfo(name='sha1(md5($pass))', hashcat=4700, john=None, extended=True),
-            HashInfo(name='sha1($pass.$salt)', hashcat=110, john=None, extended=True),
-            HashInfo(name='sha1($salt.$pass)', hashcat=120, john=None, extended=True),
+            HashInfo(name='sha1($pass.$salt)', hashcat=110, john='dynamic_24', extended=True),
+            HashInfo(name='sha1($salt.$pass)', hashcat=120, john='dynamic_25', extended=True),
             HashInfo(name='sha1(unicode($pass).$salt)', hashcat=130, john=None, extended=True),
             HashInfo(name='sha1($salt.unicode($pass))', hashcat=140, john=None, extended=True),
             HashInfo(name='HMAC-SHA1 (key = $pass)', hashcat=150, john='hmac-sha1', extended=True),
